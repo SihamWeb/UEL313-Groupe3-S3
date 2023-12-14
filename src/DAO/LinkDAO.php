@@ -165,4 +165,13 @@ class LinkDAO extends DAO
     public function deleteAllByUser($userId) {
         $this->getDb()->delete('tl_liens', array('user_id' => $userId));
     }
+
+    /* Get 15 last links  */
+    public function findLastLinks()
+    {
+        $sql = 'SELECT * FROM tl_liens ORDER BY lien_id DESC LIMIT 15';
+        $result = $this->getDb()->fetchAll($sql);
+
+        return $result;
+    }
 }
