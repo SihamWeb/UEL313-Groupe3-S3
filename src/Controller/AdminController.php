@@ -70,7 +70,7 @@ class AdminController {
             }
 
             // Update RSS file
-            $linksRss = $app['dao.link']->findAllOrderByDateDescLimit();
+            $linksRss = $app['dao.link']->findLastLinks();
             date_default_timezone_set('Europe/Paris');
             $date = new DateTime("");
             $repertoire = dirname(__DIR__, 2) . '/rss.xml';
