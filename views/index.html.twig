@@ -19,4 +19,15 @@
 			</div>
 		{% endfor %}
 	</div>
+	<!-- Pagination links -->
+	<div>
+		<span>Pages :</span>
+		{% for page in 1..totalPagesLinks %}
+			{% if page == currentPageLinks %}
+				<span>{{ page }}</span>
+			{% else %}
+				<a href="{{ path('home', {'pageLinks': page}) }}">{{ page }}</a>
+			{% endif %}
+		{% endfor %}
+	</div>
 {% endblock %}
