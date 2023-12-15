@@ -60,13 +60,31 @@ class HomeController {
      * @param Application $app Silex application
      */
     public function tagAction($id, Request $request, Application $app) {
+        $page = $request->query->get('page', 1);
+        $byPage = 1;
+
         $links = $app['dao.link']->findAllByTag($id);
         $tag   = $app['dao.tag']->findTagName($id);
 
-        return $app['twig']->render('result_tag.html.twig', array(
-            'links' => $links,
-            'tag'   => $tag
+        $offset = ($page - 1) * $byPage;
+        $linksByTag = array_slice($links, $offset, $byPage);
+
+        return $app->json(array(
+            'html' => $app['twig']->render('result_tag.html.twig', array(
+                'links' => $linksByTag,
+                'tag'   => $tag,
+                'currentPage' => $page,
+                'totalPages' => ceil(count($links) / $byPage)
+            )),
+            'pagination' => $app['twig']->render('pagination.html.twig', array(
+                'currentPage' => $page,
+                'totalPages' => ceil(count($links) / $byPage)
+            )),
+            'currentPage' => $page,
+            'totalPages' => ceil(count($links) / $byPage)
         ));
+
+
     }
 
     /**
