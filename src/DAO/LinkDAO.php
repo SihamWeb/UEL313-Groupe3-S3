@@ -27,8 +27,8 @@ class LinkDAO extends DAO
     /**
      * Return a list of all links, sorted by date (most recent first).
      *
-     * @param integer $page A page number.
-     * @param integer $byPage A links' number by page.
+     * @param integer $currentPageLinks A page number.
+     * @param integer $byPageLinks A links' number by page.
      *
      * @return array A list of all links.
      */
