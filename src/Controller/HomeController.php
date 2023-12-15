@@ -10,11 +10,27 @@ class HomeController {
     /**
      * Home page controller.
      *
+     * @param Request $request Incoming request
      * @param Application $app Silex application
      */
-    public function indexAction(Application $app) {
-        $links = $app['dao.link']->findAll();
-        return $app['twig']->render('index.html.twig', array('links' => $links));
+    public function indexAction(Request $request, Application $app) {
+        // Get the page number from the query
+        $currentPageLinks = $request->query->get('pageLinks', 1);
+        $byPageLinks = 3;
+
+        // Get links paginated
+        $links = $app['dao.link']->findByPage($currentPageLinks, $byPageLinks);
+        // Get the total number of links
+        $totalLinks = $app['dao.link']->getTotalLinks();
+        // Get Number of pages necessary (links)
+        $totalPagesLinks = ceil($totalLinks / $byPageLinks);
+
+        $links = $app['dao.link']->findByPage($currentPageLinks, $byPageLinks);
+        return $app['twig']->render('index.html.twig', array(
+            'links' => $links,
+            'totalPagesLinks' => $totalPagesLinks,
+            'currentPageLinks' => $currentPageLinks
+        ));
     }
 
     /**
