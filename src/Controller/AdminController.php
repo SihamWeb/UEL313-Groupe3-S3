@@ -16,14 +16,38 @@ class AdminController {
     /**
      * Admin home page controller.
      *
+     * @param Request $request Incoming request
      * @param Application $app Silex application
      */
-    public function indexAction(Application $app) {
-        $links = $app['dao.link']->findAll();
-        $users = $app['dao.user']->findAll();
+    public function indexAction(Request $request, Application $app) {
+        // Get the page number from the query
+        $currentPageLinks = $request->query->get('pageLinks', 1);
+        $currentPageUsers = $request->query->get('pageUsers', 1);
+        $byPageLinks = 3;
+        $byPageUsers = 2;
+
+        // Get links paginated
+        $links = $app['dao.link']->findByPage($currentPageLinks, $byPageLinks);
+        // Get the total number of links
+        $totalLinks = $app['dao.link']->getTotalLinks();
+        // Get Number of pages necessary (links)
+        $totalPagesLinks = ceil($totalLinks / $byPageLinks);
+
+        // Get Users paginated
+        $users = $app['dao.user']->findByPage($currentPageUsers, $byPageUsers);
+        // Get the total number of users
+        $totalUsers = $app['dao.user']->getTotalUsers();
+        // Get Number of pages necessary (users)
+        $totalPagesUsers = ceil($totalUsers / $byPageUsers);
+
         return $app['twig']->render('admin.html.twig', array(
             'links' => $links,
-            'users' => $users));
+            'users' => $users,
+            'totalPagesLinks' => $totalPagesLinks,
+            'totalPagesUsers' => $totalPagesUsers,
+            'currentPageLinks' => $currentPageLinks,
+            'currentPageUsers' => $currentPageUsers
+        ));
     }
 
     /**
