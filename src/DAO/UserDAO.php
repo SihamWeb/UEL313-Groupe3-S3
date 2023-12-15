@@ -39,19 +39,20 @@ class UserDAO extends DAO implements UserProviderInterface
         return (int) $result['total'];
     }
 
-    public function findByPage($currentPageUsers, $usersPerPage) {
+    public function findByPage($page, $usersPerPage) {
         $sql = "
             SELECT * FROM tl_users
             ORDER BY usr_id DESC
             LIMIT :quantite OFFSET :start
         ";
 
-        $start = ($currentPageUsers - 1) * $usersPerPage;
+        $start = ($page - 1) * $usersPerPage;
 
         $query = $this->getDb()->prepare($sql);
         $query->bindValue('start', $start, \PDO::PARAM_INT);
         $query->bindValue('quantite', $usersPerPage, \PDO::PARAM_INT);
         $query->execute();
+
         $result = $query->fetchAll();
 
         $_users = array();
