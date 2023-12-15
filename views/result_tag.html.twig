@@ -1,6 +1,6 @@
 {% extends "layout.html.twig" %}
 
-{% block title %}Résultat(s) pour "{{ tag.title }}" {% endblock %}
+{% block title %}Résultat(s) pour "{{ tag.title }}"{% endblock %}
 
 {% block content %}
 	<div class="row">
@@ -12,17 +12,29 @@
 		{% else %}
 			{% for link in links %}
 				<div class="col-md-4">
-				    <h2><a class="linkTitle" href="{{ path('link', { 'id': link.id }) }}">{{ link.title }}</a></h2>
-				    <p>{{ link.desc }}</p>
-				    <a href="{{ link.url }}" title="" target="_blank">Open ></a>
-				    <em>(by {{ link.user.username }})</em>
-				    {% for tag in link.tags %}
-				    	<a href="{{ path('tag', { 'id': tag.id }) }}" title="Filtrer">
-				    		{{ tag.title }}
-				    	</a>
-				    {% endfor %}
+					<h2><a class="linkTitle" href="{{ path('link', { 'id': link.id }) }}">{{ link.title }}</a></h2>
+					<p>{{ link.desc }}</p>
+					<a href="{{ link.url }}" title="" target="_blank">Open ></a>
+					<em>(by {{ link.user.username }})</em>
+					{% for tag in link.tags %}
+						<a href="{{ path('tag', { 'id': tag.id }) }}" title="Filtrer">
+							{{ tag.title }}
+						</a>
+					{% endfor %}
 				</div>
 			{% endfor %}
+
+			<!-- Pagination links by tag -->
+			<div class="pagination">
+				{% for i in 1..maxPages %}
+					<a href="{{ path('tag', { 'id': tag.id, 'page': i }) }}"
+						{% if i == page %}
+							class="active"
+						{% endif %}>{{ i }}
+					</a>
+				{% endfor %}
+			</div>
 		{% endif %}
 	</div>
 {% endblock %}
+
