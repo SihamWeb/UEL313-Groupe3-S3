@@ -27,15 +27,28 @@ class LinkDAO extends DAO
     /**
      * Return a list of all links, sorted by date (most recent first).
      *
+     * @param integer $page A page number.
+     * @param integer $byPage A links' number by page.
+     *
      * @return array A list of all links.
      */
-    public function findAll() {
+    public function findByPage($currentPageLinks, $byPageLinks) {
+        // Get the offset based on the page number and links' number by page
+        $offset = ($currentPageLinks - 1) * $byPageLinks;
+
         $sql = "
             SELECT * 
             FROM tl_liens 
             ORDER BY lien_id DESC
+            LIMIT :byPageLinks OFFSET :offset
         ";
-        $result = $this->getDb()->fetchAll($sql);
+
+        $query = $this->getDb()->prepare($sql);
+        $query->bindValue('byPageLinks', $byPageLinks, \PDO::PARAM_INT);
+        $query->bindValue('offset', $offset, \PDO::PARAM_INT);
+        $query->execute();
+
+        $result = $query->fetchAll();
 
         // Convert query result to an array of domain objects
         $_links = array();
@@ -44,6 +57,23 @@ class LinkDAO extends DAO
             $_links[$linkId] = $this->buildDomainObject($row);
         }
         return $_links;
+    }
+
+    /**
+     * Return links' total number
+     *
+     * @return integer Total number of links
+     *
+     */
+    public function getTotalLinks(){
+        $sql = "
+            SELECT COUNT(lien_id) AS total
+            FROM tl_liens
+        ";
+
+        $result = $this->getDb()->fetchAssoc($sql);
+
+        return (int) $result['total'];
     }
 
     /**
