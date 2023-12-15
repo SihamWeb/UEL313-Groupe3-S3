@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"
+                        xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+                        xmlns:dc="http://purl.org/dc/elements/1.1/"
+                        xmlns:atom="http://www.w3.org/2005/Atom"
+                        xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+                        xmlns:slash="http://purl.org/rss/1.0/modules/slash/">
+   <channel>
+       <title>Watson - Liens</title>
+       <atom:link href="/app/src/Controller/rss.xml" rel="self" type="application/rss+xml" />
+       <link>https://www.watson.com</link>
+       <language>fr-FR</language>
+       <description>Ce flux répertorie les 15 derniers liens de Watson</description>
+       <lastBuildDate>Thu, 14 Dec 2023 18:10:57 +0100</lastBuildDate>
+       <item>
+           <title>IONOS</title>
+           <link>https://www.ionos.fr</link>
+           <description><![CDATA[IONOS est un fournisseur de services Internet offrant des solutions d’hébergement, de création de sites Web et de commerce en ligne.]]></description>
+           <dc:creator><![CDATA[siham]]></dc:creator>
+           <guid isPermaLink="false">http://www.watson.com/link/16</guid>
+       </item>
+       <item>
+           <title>CNIL</title>
+           <link>https://www.cnil.fr/fr</link>
+           <description><![CDATA[Le site de la CNIL offre des informations sur vos droits en matière de données personnelles et comment les exercer. Il propose également des conseils sur la protection de vos données sur Internet.]]></description>
+           <dc:creator><![CDATA[siham]]></dc:creator>
+           <guid isPermaLink="false">http://www.watson.com/link/15</guid>
+       </item>
+       <item>
+           <title>Net Concept</title>
+           <link>https://www.net-concept.fr/developpement-web/le-developpement-web-cest-quoi/</link>
+           <description><![CDATA[Le développement Web désigne de manière générale les tâches associées au développement de sites Web destinés à être hébergés via un intranet ou Internet.]]></description>
+           <dc:creator><![CDATA[siham]]></dc:creator>
+           <guid isPermaLink="false">http://www.watson.com/link/14</guid>
+       </item>
+       <item>
+           <title>WampServer</title>
+           <link>https://www.wampserver.com/</link>
+           <description><![CDATA[WampServer est une plate-forme de développement Web sous Windows pour des applications Web dynamiques à l’aide du serveur Apache2, du langage de scripts PHP et d’une base de données MySQL.]]></description>
+           <dc:creator><![CDATA[siham]]></dc:creator>
+           <guid isPermaLink="false">http://www.watson.com/link/13</guid>
+       </item>
+       <item>
+           <title>MDN Web Docs</title>
+           <link>https://developer.mozilla.org/fr/docs/Learn</link>
+           <description><![CDATA[Un ensemble d’articles pour fournir aux développeurs web débutants tout ce dont ils ont besoin pour commencer à développer des sites web simples.]]></description>
+           <dc:creator><![CDATA[siham]]></dc:creator>
+           <guid isPermaLink="false">http://www.watson.com/link/12</guid>
+       </item>
+       <item>
+           <title>Framasoft 12</title>
+           <link>https://framasoft.org/</link>
+           <description><![CDATA[Un réseau dédié à la promotion du « libre » en général et du logiciel libre en particulier.]]></description>
+           <dc:creator><![CDATA[admin]]></dc:creator>
+           <guid isPermaLink="false">http://www.watson.com/link/3</guid>
+       </item>
+       <item>
+           <title>Duck Duck Go</title>
+           <link>https://duckduckgo.com/</link>
+           <description><![CDATA[Le moteur de recherche qui ne trace pas ses utilisateurs.]]></description>
+           <dc:creator><![CDATA[admin]]></dc:creator>
+           <guid isPermaLink="false">http://www.watson.com/link/2</guid>
+       </item>
+       <item>
+           <title>Campus Virtuel TIC</title>
+           <link>https://cvtic.unilim.fr/</link>
+           <description><![CDATA[Site internet du CvTIC.]]></description>
+           <dc:creator><![CDATA[admin]]></dc:creator>
+           <guid isPermaLink="false">http://www.watson.com/link/1</guid>
+       </item>
+   </channel>
+</rss>
