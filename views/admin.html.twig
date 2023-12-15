@@ -63,6 +63,17 @@
                 {% endfor %}
             </table>
         </div>
+        <!-- Pagination links -->
+        <div>
+            <span>Pages :</span>
+            {% for page in 1..totalPagesLinks %}
+                {% if page == currentPageLinks %}
+                    <span>{{ page }}</span>
+                {% else %}
+                    <a href="{{ path('admin', {'pageLinks': page}) }}">{{ page }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
         {% else %}
         <div class="alert alert-warning">No links found.</div>
         {% endif %}
@@ -107,6 +118,17 @@
                 </tr>
                 {% endfor %}
             </table>
+        </div>
+        <!-- Pagination users -->
+        <div>
+            <span>Pages :</span>
+            {% for page in 1..totalPagesUsers %}
+                {% if page == currentPageUsers %}
+                    <span>{{ page }}</span>
+                {% else %}
+                    <a href="{{ path('admin', {'pageUsers': page}) }}">{{ page }}</a>
+                {% endif %}
+            {% endfor %}
         </div>
         {% else %}
         <div class="alert alert-warning">No users found.</div>
