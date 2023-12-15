@@ -4,6 +4,7 @@ namespace Watson\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Watson\Domain\Link;
 use Watson\Domain\User;
 use Watson\Domain\Tag;
@@ -49,6 +50,59 @@ class AdminController {
             'currentPageUsers' => $currentPageUsers
         ));
     }
+
+    /**
+     * Get paginated content in JSON format.
+     *
+     * @param Request $request Incoming request
+     * @param Application $app Silex application
+     * @return JsonResponse
+     */
+    public function getContentAction(Request $request, Application $app)
+    {
+        // Content type from the request (links or users)
+        $contentType = $request->query->get('contentType');
+
+        // Initialisation variables for pagination
+        $page = $request->query->get('page', 1);
+
+        // Type of content requested
+        switch ($contentType) {
+            case 'links':
+                $byPage = 3;
+                $links = $app['dao.link']->findByPage($page, $byPage);
+                $totalLinks = $app['dao.link']->getTotalLinks();
+                $totalPages = ceil($totalLinks / $byPage);
+
+                $responseData = [
+                    'content' => $links,
+                    'totalPages' => $totalPages,
+                    'currentPage' => $page,
+                ];
+
+                break;
+
+            case 'users':
+                $byPage = 2;
+                $users = $app['dao.user']->findByPage($page, $byPage);
+                $totalUsers = $app['dao.user']->getTotalUsers();
+                $totalPages = ceil($totalUsers / $byPage);
+
+                $responseData = [
+                    'content' => $users,
+                    'totalPages' => $totalPages,
+                    'currentPage' => $page,
+                ];
+                break;
+
+        }
+        error_log(print_r($responseData, true));
+
+        // Return the data as a JSON response
+        return new JsonResponse($responseData);
+    }
+
+
 
     /**
      * Add link controller.
