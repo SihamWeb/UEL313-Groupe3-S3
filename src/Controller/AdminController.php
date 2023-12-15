@@ -73,7 +73,7 @@ class AdminController {
             $linksRss = $app['dao.link']->findLastLinks();
             date_default_timezone_set('Europe/Paris');
             $date = new DateTime("");
-            $repertoire = dirname(__DIR__, 2) . '/rss.xml';
+            $repertoire = dirname(__DIR__, 2) . '/web/rss.xml';
             $fichier = fopen($repertoire, "w");
             $xml = '<?xml version="1.0" encoding="UTF-8" ?>' . PHP_EOL;
             $xml .= '<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"
