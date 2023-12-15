@@ -60,14 +60,24 @@ class HomeController {
      * @param Application $app Silex application
      */
     public function tagAction($id, Request $request, Application $app) {
-        $links = $app['dao.link']->findAllByTag($id);
+        $page = $request->query->get('page', 1);
+        $byPage = 1;
+
+        $totalLinks = $app['dao.link']->countByTag($id);
+        $needPage = ceil($totalLinks / $byPage);
+
+        $links = $app['dao.link']->findAllByTag($id, $page, $byPage);
         $tag   = $app['dao.tag']->findTagName($id);
 
         return $app['twig']->render('result_tag.html.twig', array(
             'links' => $links,
-            'tag'   => $tag
+            'tag'   => $tag,
+            'page'  => $page,
+            'maxPages' => $needPage,
         ));
     }
+
+
 
     /**
      * User login controller.
