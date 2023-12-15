@@ -25,26 +25,26 @@ class LinkDAO extends DAO
     }
 
     /**
-     * Return a list of all links, sorted by date (most recent first).
+     * Return a list of links paginated by date (most recent first).
      *
-     * @param integer $currentPageLinks A page number.
-     * @param integer $byPageLinks A links' number by page.
+     * @param integer $page A page number.
+     * @param integer $byPage Number of links per page.
      *
-     * @return array A list of all links.
+     * @return array A list of links.
      */
-    public function findByPage($currentPageLinks, $byPageLinks) {
-        // Get the offset based on the page number and links' number by page
-        $offset = ($currentPageLinks - 1) * $byPageLinks;
+    public function findByPage($page, $byPage) {
+        // Get the offset based on the page number and number of links per page
+        $offset = ($page - 1) * $byPage;
 
         $sql = "
             SELECT * 
             FROM tl_liens 
             ORDER BY lien_id DESC
-            LIMIT :byPageLinks OFFSET :offset
+            LIMIT :byPage OFFSET :offset
         ";
 
         $query = $this->getDb()->prepare($sql);
-        $query->bindValue('byPageLinks', $byPageLinks, \PDO::PARAM_INT);
+        $query->bindValue('byPage', $byPage, \PDO::PARAM_INT);
         $query->bindValue('offset', $offset, \PDO::PARAM_INT);
         $query->execute();
 
@@ -53,9 +53,9 @@ class LinkDAO extends DAO
         // Convert query result to an array of domain objects
         $_links = array();
         foreach ($result as $row) {
-            $linkId          = $row['lien_id'];
-            $_links[$linkId] = $this->buildDomainObject($row);
+            $_links[] = $this->buildDomainObject($row);
         }
+
         return $_links;
     }
 
