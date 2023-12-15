@@ -15,6 +15,9 @@ $app->get('/login', "Watson\Controller\HomeController::loginAction")->bind('logi
 // Admin zone
 $app->get('/admin', "Watson\Controller\AdminController::indexAction")->bind('admin');
 
+// Admin pagination
+$app->get('/get-content', 'Watson\Controller\AdminController::getContentAction')->bind('get_content');
+
 // Add a new link
 $app->match('/admin/link/add', "Watson\Controller\AdminController::addLinkAction")->bind('admin_link_add');
 
