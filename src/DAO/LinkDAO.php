@@ -105,14 +105,17 @@ class LinkDAO extends DAO
      *
      * @return A list of all links.
      */
-    public function findAllByTag($id) {
+    public function findAllByTag($id, $page = 1, $limit = 10) {
+        $offset = ($page - 1) * $limit;
+
         $sql = "
-            SELECT tl_liens.*
-            FROM tl_liens
-            INNER JOIN tl_tags_liens
-                ON tl_tags_liens.lien_id = tl_liens.lien_id
-            WHERE tl_tags_liens.tag_id = ?
-        ";
+        SELECT tl_liens.*
+        FROM tl_liens
+        INNER JOIN tl_tags_liens
+            ON tl_tags_liens.lien_id = tl_liens.lien_id
+        WHERE tl_tags_liens.tag_id = ?
+        LIMIT $limit OFFSET $offset
+    ";
         $result = $this->getDb()->fetchAll($sql, array($id));
 
         // Convert query result to an array of domain objects
@@ -123,6 +126,28 @@ class LinkDAO extends DAO
         }
         return $_links;
     }
+
+    /**
+     * Returns number of tag by id
+     *
+     * @param integer $id The tag id.
+     *
+     * @return A number of links by tag.
+     */
+    public function countByTag($id) {
+        $sql = "
+        SELECT COUNT(*)  total
+        FROM tl_liens
+        INNER JOIN tl_tags_liens
+            ON tl_tags_liens.lien_id = tl_liens.lien_id
+        WHERE tl_tags_liens.tag_id = ?
+    ";
+        $result = $this->getDb()->fetchAssoc($sql, array($id));
+
+        return $result['total'];
+    }
+
+
 
     /**
      * Saves a link into the database.
