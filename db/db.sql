@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 172.17.0.2
--- Généré le : jeu. 14 déc. 2023 à 16:59
+-- Généré le : ven. 15 déc. 2023 à 16:55
 -- Version du serveur : 8.0.35-0ubuntu0.20.04.1
 -- Version de PHP : 8.1.26
 
@@ -85,7 +85,8 @@ INSERT INTO `tl_tags` (`tag_id`, `tag_name`) VALUES
 (21, 'internet'),
 (22, 'codage'),
 (23, 'données'),
-(24, 'hébergement');
+(24, 'hébergement'),
+(25, 'googleg');
 
 -- --------------------------------------------------------
 
@@ -135,7 +136,9 @@ INSERT INTO `tl_tags_liens` (`tag_id`, `lien_id`) VALUES
 (21, 15),
 (10, 16),
 (13, 16),
-(24, 16);
+(24, 16),
+(5, 17),
+(25, 18);
 
 -- --------------------------------------------------------
 
@@ -156,7 +159,7 @@ CREATE TABLE `tl_users` (
 --
 
 INSERT INTO `tl_users` (`usr_id`, `usr_name`, `usr_password`, `usr_salt`, `usr_role`) VALUES
-(1, 'admin', 'VPqiBP4tKdPQu4po9JWVvaxAlKvr0HsbA8okPTvWrE9OzFzYnIvo0O9zFGi8CCTrQOUuFp8sKRQWubI8H5ADnw==', '>=28!7NLw!S37zLjs7Uu[nC', 'ROLE_ADMIN'),
+(1, 'admin', 'LsJKppRTEPz4uKrkhScOE6HBSvHuaIcFbAX9FWC7h/f5HffX4TBcFt7p8M0hqvGzFXL+JV8TzEYePoimaosfMQ==', '>=28!7NLw!S37zLjs7Uu[nC', 'ROLE_ADMIN'),
 (3, 'siham', 'x7f2YI75e/YZiElXZlkDlNAQD52NNMx/Wu3lx09V9PoDvk+0v63FewiTuuyCVjkh4owv9UZKL8RWgrJS6yF3Uw==', '262583b7564f4e36511f8bc', 'ROLE_ADMIN'),
 (6, 'watson', 'n1jHV3sIhxeEReVLnIZRibFM8q9AhBS6wzgPyz/YveNF7Q7h/hQ08hbMaT2aeKyVIo2A8SqrVw/SXfOEaPcuDQ==', '78627d9acf81fa84ab8f5c5', 'ROLE_ADMIN');
 
@@ -190,13 +193,13 @@ ALTER TABLE `tl_users`
 -- AUTO_INCREMENT pour la table `tl_liens`
 --
 ALTER TABLE `tl_liens`
-  MODIFY `lien_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `lien_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT pour la table `tl_tags`
 --
 ALTER TABLE `tl_tags`
-  MODIFY `tag_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `tag_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT pour la table `tl_users`
