@@ -72,14 +72,15 @@ class AdminController {
             $app['session']->getFlashBag()->add('success', 'The link was successfully created.');
         }
 
-        return $app['twig']->render('link_form.html.twig', array(
-            'title' => 'New link',
-            'linkForm' => $linkForm->createView()));
 
         // RSS
         $links = $app['dao.link']->getLinksForRSS();
         $this->linksToRSS($app, $links);
+
         
+        return $app['twig']->render('link_form.html.twig', array(
+            'title' => 'New link',
+            'linkForm' => $linkForm->createView()));    
     }
 
     /**
@@ -137,9 +138,16 @@ class AdminController {
             $app['dao.link']->save($link);
             $app['session']->getFlashBag()->add('success', 'The link was succesfully updated.');
         }
+
+        
+        // RSS
+        $links = $app['dao.link']->getLinksForRSS();
+        $this->linksToRSS($app, $links);
+
+        
         return $app['twig']->render('link_form.html.twig', array(
             'title' => 'Edit link',
-            'linkForm' => $linkForm->createView()));
+            'linkForm' => $linkForm->createView()));        
     }
 
     /**
@@ -152,6 +160,10 @@ class AdminController {
         // Delete the link
         $app['dao.link']->delete($id);
         $app['session']->getFlashBag()->add('success', 'The link was succesfully removed.');
+
+        // RSS
+        $links = $app['dao.link']->getLinksForRSS();
+        $this->linksToRSS($app, $links);
         
         // Redirect to admin home page
         return $app->redirect($app['url_generator']->generate('admin'));
