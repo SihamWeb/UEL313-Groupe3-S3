@@ -64,16 +64,23 @@
             </table>
         </div>
         <!-- Pagination links -->
-        <div>
-            <span>Pages :</span>
-            {% for page in 1..totalPagesLinks %}
-                {% if page == currentPageLinks %}
-                    <span>{{ page }}</span>
-                {% else %}
-                    <a href="{{ path('admin', {'pageLinks': page}) }}">{{ page }}</a>
+            <div class="text-center">
+                {% if currentPageLinks - 1 >= 1 %}
+                    <a class="btn btn-primary st-color-yellow" href="{{ path('admin', { 'pageLinks': currentPageLinks - 1 }) }}" title="previous">Précédent</a>
                 {% endif %}
-            {% endfor %}
-        </div>
+
+                {% for page in 1..totalPagesLinks %}
+                    {% if page == currentPageLinks %}
+                        <span>&nbsp;{{ page }}&nbsp;</span>
+                    {% else %}
+                        <a href="{{ path('admin', {'pageLinks': page}) }}">&nbsp;{{ page }}&nbsp;</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if currentPageLinks + 1 <= totalPagesLinks %}
+                    <a class="btn btn-primary st-color-yellow" href="{{ path('admin', { 'pageLinks': currentPageLinks + 1 }) }}" title="next">Suivant</a>
+                {% endif %}
+            </div>
         {% else %}
         <div class="alert alert-warning">No links found.</div>
         {% endif %}

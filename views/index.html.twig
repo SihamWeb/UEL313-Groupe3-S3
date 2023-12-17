@@ -3,31 +3,35 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-	<div class="row">
+	<div class="row card-group">
 		{% for link in links %}
-			<div class="col-md-4">
-			    <h2><a class="linkTitle" href="{{ path('link', { 'id': link.id }) }}">{{ link.title }}</a></h2>
-			    <p>{{ link.desc }}</p>
-			    <a href="{{ link.url }}" title="" target="_blank">Open ></a>
-			    <em>(by {{ link.user.username }})</em>
+			<div class="card col-md-4">
+				<div class="container_images view overlay zoom card-body">
+					<a class="linkTitle" href="{{ path('link', { 'id': link.id }) }}"><img class="zoom" src="../web/images/{{ link.title }}.jpeg" alt="Card image cap"/></a>
+				</div>
 
-			    {% for tag in link.tags %}
-			    	<a href="{{ path('tag', { 'id': tag.id }) }}" title="Filtrer">
-			    		{{ tag.title }}
-			    	</a>
-			    {% endfor %}
 			</div>
 		{% endfor %}
 	</div>
+
 	<!-- Pagination links -->
-	<div>
-		<span>Pages :</span>
+	<br/><br/><br/><br/>
+	<div class="text-center">
+        {% if currentPageLinks - 1 >= 1 %}
+          <a class="btn btn-primary st-color-yellow" href="{{ path('home', { 'pageLinks': currentPageLinks - 1 }) }}" title="previous">Précédent</a>
+        {% endif %}
+
 		{% for page in 1..totalPagesLinks %}
 			{% if page == currentPageLinks %}
-				<span>{{ page }}</span>
+				<span>&nbsp;{{ page }}&nbsp;</span>
 			{% else %}
-				<a href="{{ path('home', {'pageLinks': page}) }}">{{ page }}</a>
+				<a href="{{ path('home', {'pageLinks': page}) }}">&nbsp;{{ page }}&nbsp;</a>
 			{% endif %}
 		{% endfor %}
+
+        {% if currentPageLinks + 1 <= totalPagesLinks %}
+            <a class="btn btn-primary st-color-yellow" href="{{ path('home', { 'pageLinks': currentPageLinks + 1 }) }}" title="next">Suivant</a>
+        {% endif %}
 	</div>
 {% endblock %}
+

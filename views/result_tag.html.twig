@@ -3,38 +3,55 @@
 {% block title %}Résultat(s) pour "{{ tag.title }}"{% endblock %}
 
 {% block content %}
-	<div class="row">
-		<h1>Résultat(s) associé(s) au tag "{{ tag.title }}"</h1>
-		{% if links|length <= 0 %}
-			<p>
-				Aucun résultat ne correspond au tag "{{ tag.title }}".
-			</p>
-		{% else %}
-			{% for link in links %}
-				<div class="col-md-4">
-					<h2><a class="linkTitle" href="{{ path('link', { 'id': link.id }) }}">{{ link.title }}</a></h2>
-					<p>{{ link.desc }}</p>
-					<a href="{{ link.url }}" title="" target="_blank">Open ></a>
-					<em>(by {{ link.user.username }})</em>
-					{% for tag in link.tags %}
-						<a href="{{ path('tag', { 'id': tag.id }) }}" title="Filtrer">
-							{{ tag.title }}
-						</a>
-					{% endfor %}
-				</div>
-			{% endfor %}
+    <div class="row">
+        <h1>Résultat(s) associé(s) au tag "{{ tag.title }}"</h1>
+    <br><br>
+        {% if links|length <= 0 %}
+            <p>
+                Aucun résultat ne correspond au tag "{{ tag.title }}".
+            </p>
+        {% else %}
+            {% for link in links %}
+                <div class="card" >
+                    <h2>{{ link.title }}</h2>
+                    <p>{{ link.desc }}</p>
+                <br><br>
+                <a class="btn btn-primary" href="{{ link.url }}" title="" target="_blank">Open ></a>
+                <br><br>
+                {% for tag in link.tags %}
+                    <a href="{{ path('tag', { 'id': tag.id }) }}" class="btn btn-outline-primary" title="Filtrer">
+                        {{ tag.title }}
+                    </a>
+                {% endfor %}
+                <p><em>(by {{ link.user.username }})</em></p>
+                </div>
+            {% endfor %}
+            </div>
 
-			<!-- Pagination links by tag -->
-			<div class="pagination">
-				{% for i in 1..maxPages %}
-					<a href="{{ path('tag', { 'id': tag.id, 'page': i }) }}"
-						{% if i == page %}
-							class="active"
-						{% endif %}>{{ i }}
-					</a>
-				{% endfor %}
-			</div>
-		{% endif %}
-	</div>
+            <br><br>
+            <!-- Pagination links by tag -->
+            <div class="pagination text-center">
+                {% if page - 1 >= 1 %}
+                    <a class="btn btn-primary st-color-yellow"
+                       href="{{ path('tag', { 'id': tag.id, 'page': page-1 }) }}" title="previous">Précédent</a>
+                {% endif %}
+
+                {% for i in 1..maxPages %}
+                    <a href="{{ path('tag', { 'id': tag.id, 'page': i }) }}"
+                    {% if i == page %}
+                        <span>&nbsp;{{ i }}&nbsp;</span>
+                    {% else %}
+                        <a href="{{ path('tag', { 'id': tag.id, 'page': i }) }}">&nbsp;{{ i }}&nbsp;</a>
+
+                    {% endif %}
+                    </a>
+                {% endfor %}
+                {% if page + 1 <= maxPages %}
+                    <a class="btn btn-primary st-color-yellow"
+                       href="{{ path('tag', { 'id': tag.id, 'page': page+1 }) }}" title="next">Suivant</a>
+                {% endif %}
+            </div>
+
+        {% endif %}
 {% endblock %}
 
