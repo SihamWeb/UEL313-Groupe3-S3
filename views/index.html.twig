@@ -3,18 +3,23 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+	<div>
+	<h2> Accéder à mon fichier RSS </h2>
 	<a class="btn btn-primary" href="{{ path('rss') }}">&nbsp;Accéder au fichier RSS&nbsp;</a>
 	<div class="row card-group">
 		{% for link in links %}
-			<div class="card col-md-4">
+			<div class="card_links col-md-4">
 				<div class="container_images view overlay zoom card-body">
-					<a class="linkTitle" href="{{ path('link', { 'id': link.id }) }}"><img class="zoom" src="../web/images/{{ link.title }}.jpeg" alt="Card image cap"/></a>
+					<a class="linkTitle" href="{{ path('link', { 'id': link.id }) }}"><img class="zoom" src="../web/images/{{ link.title }}.jpeg" alt="Card image cap"/>
+						<div class="text_overlay">
+							<div class="text">{{ link.title }}</div>
+						</div>
+					</a>
 				</div>
-
 			</div>
 		{% endfor %}
 	</div>
-
+	</div>
 	<!-- Pagination links -->
 	<br/><br/><br/><br/>
 	<div class="text-center">
