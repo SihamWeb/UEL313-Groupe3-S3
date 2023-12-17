@@ -3,6 +3,7 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+	<a href="{{ path('rss') }}">&nbsp;Accéder au fichier RSS&nbsp;</a>
 	<div class="row card-group">
 		{% for link in links %}
 			<div class="card col-md-4">

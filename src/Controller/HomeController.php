@@ -4,6 +4,7 @@ namespace Watson\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class HomeController {
 
@@ -31,6 +32,15 @@ class HomeController {
             'totalPagesLinks' => $totalPagesLinks,
             'currentPageLinks' => $currentPageLinks
         ));
+    }
+
+    /**
+     * @return Response RSS File
+     */
+
+    public function rssAction(){
+        $rssContent = file_get_contents(__DIR__.'/../../web/rss.xml');
+        return new Response($rssContent, 200, array('Content-Type' => 'text/xml'));
     }
 
     /**
