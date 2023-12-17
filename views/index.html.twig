@@ -5,7 +5,7 @@
 {% block content %}
 	<div>
 	<h2> Accéder à mon fichier RSS </h2>
-	<a href="{{ path('rss') }}">&nbsp;Accéder au fichier RSS&nbsp;</a>
+	<a class="btn btn-primary" href="{{ path('rss') }}">&nbsp;Accéder au fichier RSS&nbsp;</a>
 	<div class="row card-group">
 		{% for link in links %}
 			<div class="card_links col-md-4">
