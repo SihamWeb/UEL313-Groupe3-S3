@@ -96,3 +96,24 @@ img {
     transform: translate(-50%, -50%);
     text-align: center;
 }
+
+.card_tag {
+    background-color: #282d32;
+    border-radius: 10px;
+    padding: 20px ;
+    margin : 20px ;
+}
+
+.text_tag { color : white ;
+    text-align: justify;
+}
+
+.btn_tag {
+    border-radius: 20px;
+    background-color: #282d32 ;
+    color: white;
+    border:1px solid white;
+    padding : 3px ;
+margin-right: 10px ;
+}
+

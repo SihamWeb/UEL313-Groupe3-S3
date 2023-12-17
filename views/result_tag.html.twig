@@ -11,21 +11,25 @@
                 Aucun résultat ne correspond au tag "{{ tag.title }}".
             </p>
         {% else %}
+
             {% for link in links %}
-                <div class="card" >
-                    <h2>{{ link.title }}</h2>
-                    <p>{{ link.desc }}</p>
+                <div class="card_tag  col-md-3" >
+                    <h2 class="text_tag">{{ link.title }}</h2>
+                    <p class="text_tag"> {{ link.desc }}</p>
                 <br><br>
-                <a class="btn btn-primary" href="{{ link.url }}" title="" target="_blank">Open ></a>
+                <a class="btn btn-primary" href="{{ link.url }}" title="" target="_blank">Accéder au site</a>
                 <br><br>
+                <h5 class="text_tag"> Catégories : </h5>
                 {% for tag in link.tags %}
-                    <a href="{{ path('tag', { 'id': tag.id }) }}" class="btn btn-outline-primary" title="Filtrer">
+                    <a href="{{ path('tag', { 'id': tag.id }) }}" class="btn_tag" title="Filtrer">
                         {{ tag.title }}
                     </a>
                 {% endfor %}
-                <p><em>(by {{ link.user.username }})</em></p>
+                    <br> <br>
+                <p><h5 class="text_tag">Auteur : {{ link.user.username }}</h5></p>
                 </div>
             {% endfor %}
+
             </div>
 
             <br><br>
