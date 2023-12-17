@@ -10,10 +10,11 @@
 		{% for link in links %}
 			<div class="card_links col-md-4">
 				<div class="container_images view overlay zoom card-body">
-					<a class="linkTitle" href="{{ path('link', { 'id': link.id }) }}"><img class="zoom" src="../web/images/{{ link.title }}.jpeg" alt="Card image cap"/></a>
+					<a class="linkTitle" href="{{ path('link', { 'id': link.id }) }}"><img class="zoom" src="../web/images/{{ link.title }}.jpeg" alt="Card image cap"/>
 						<div class="text_overlay">
 							<div class="text">{{ link.title }}</div>
 						</div>
+					</a>
 				</div>
 			</div>
 		{% endfor %}
