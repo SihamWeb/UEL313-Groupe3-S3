@@ -1,107 +1,121 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"
-                        xmlns:wfw="http://wellformedweb.org/CommentAPI/"
-                        xmlns:dc="http://purl.org/dc/elements/1.1/"
-                        xmlns:atom="http://www.w3.org/2005/Atom"
-                        xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
-                        xmlns:slash="http://purl.org/rss/1.0/modules/slash/">
+                    xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+                    xmlns:dc="http://purl.org/dc/elements/1.1/"
+                    xmlns:atom="http://www.w3.org/2005/Atom"
+                    xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+                    xmlns:slash="http://purl.org/rss/1.0/modules/slash/">
    <channel>
        <title>Watson - Liens</title>
-       <atom:link href="/opt/lampp/htdocs/UEL313-Groupe3-S3-main/src/Controller/rss.xml" rel="self" type="application/rss+xml" />
+       <atom:link href="/app/src/Controller/rss.xml" rel="self" type="application/rss+xml" />
        <link>https://www.watson.com</link>
        <language>fr-FR</language>
        <description>Ce flux répertorie les 15 derniers liens de Watson</description>
-       <lastBuildDate>Sat, 16 Dec 2023 17:09:37 +0100</lastBuildDate>
+       <lastBuildDate>Sun, 17 Dec 2023 18:28:16 +0100</lastBuildDate>
        <item>
-           <title>Le Monde</title>
-           <link>https://www.lemonde.fr/</link>
-           <description><![CDATA[Le Monde est un quotidien français de l'après-midi. C'est la principale publication du groupe Le Monde et a fait état d'un tirage moyen de 479 243 exemplaires par numéro en 2022, dont environ 40 000 ont été vendus à l'étranger.]]></description>
-           <dc:creator><![CDATA[valentine]]></dc:creator>
-           <guid isPermaLink="false">http://www.watson.com/link/25</guid>
-       </item>
-       <item>
-           <title>Reddit</title>
-           <link>https://www.reddit.com/</link>
-           <description><![CDATA[Reddit est un site web communautaire américain de discussion et d’actualités sociales. Les liens les plus appréciés du moment se trouvent affichés en page d’accueil par le vote des utilisateurs. Fondé en 2005, Reddit contient alors surtout du contenu sur la programmation et la science.]]></description>
-           <dc:creator><![CDATA[valentine]]></dc:creator>
-           <guid isPermaLink="false">http://www.watson.com/link/24</guid>
-       </item>
-       <item>
-           <title>Legifrance</title>
-           <link>https://www.legifrance.gouv.fr/</link>
-           <description><![CDATA[Légifrance est le site web officiel du gouvernement français pour la diffusion des textes législatifs et réglementaires et des décisions de justice des cours suprêmes et d'appel de droit français]]></description>
-           <dc:creator><![CDATA[valentine]]></dc:creator>
-           <guid isPermaLink="false">http://www.watson.com/link/23</guid>
-       </item>
-       <item>
-           <title>CNES</title>
-           <link>https://cnes.fr/fr</link>
-           <description><![CDATA[Le Centre national d'études spatiales est un établissement public à caractère industriel et commercial chargé d’élaborer et de proposer au gouvernement français le programme spatial français, puis de le mettre en œuvre.]]></description>
-           <dc:creator><![CDATA[valentine]]></dc:creator>
-           <guid isPermaLink="false">http://www.watson.com/link/21</guid>
-       </item>
-       <item>
-           <title>Le Télégramme</title>
-           <link>https://www.letelegramme.fr/</link>
-           <description><![CDATA[Le Télégramme est un média régional français de Bretagne, dont le siège se trouve à Morlaix. Sa version imprimée est diffusée dans le Finistère, les Côtes-d'Armor, le Morbihan et dans le pays de Saint-Malo. Il emploie 550 personnes, dont près de 220 journalistes.]]></description>
-           <dc:creator><![CDATA[valentine]]></dc:creator>
-           <guid isPermaLink="false">http://www.watson.com/link/20</guid>
-       </item>
-       <item>
-           <title>IONOS</title>
-           <link>https://www.ionos.fr</link>
-           <description><![CDATA[IONOS est un fournisseur de services Internet offrant des solutions d’hébergement, de création de sites Web et de commerce en ligne.]]></description>
+           <title>PhpStorm</title>
+           <link>https://www.jetbrains.com/fr-fr/phpstorm/</link>
+           <description><![CDATA[L'IDE PHP intelligent et ultra rapide]]></description>
            <dc:creator><![CDATA[siham]]></dc:creator>
-           <guid isPermaLink="false">http://www.watson.com/link/16</guid>
+           <guid isPermaLink="false">http://www.watson.com/link/45</guid>
        </item>
        <item>
-           <title>CNIL</title>
-           <link>https://www.cnil.fr/fr</link>
-           <description><![CDATA[Le site de la CNIL offre des informations sur vos droits en matière de données personnelles et comment les exercer. Il propose également des conseils sur la protection de vos données sur Internet.]]></description>
+           <title>Visual Studio Code</title>
+           <link>https://code.visualstudio.com/</link>
+           <description><![CDATA[Visual Studio Code est un éditeur de code extensible développé par Microsoft pour Windows, Linux et macOS.]]></description>
            <dc:creator><![CDATA[siham]]></dc:creator>
-           <guid isPermaLink="false">http://www.watson.com/link/15</guid>
+           <guid isPermaLink="false">http://www.watson.com/link/44</guid>
        </item>
        <item>
-           <title>Net Concept</title>
-           <link>https://www.net-concept.fr/developpement-web/le-developpement-web-cest-quoi/</link>
-           <description><![CDATA[Le développement Web désigne de manière générale les tâches associées au développement de sites Web destinés à être hébergés via un intranet ou Internet.]]></description>
+           <title>Sublime text</title>
+           <link>https://www.sublimetext.com/</link>
+           <description><![CDATA[Sublime Text est un éditeur de texte générique codé en C++ et Python, disponible sur Windows, Mac et Linux. Le logiciel a été conçu tout d'abord comme une extension pour Vim, riche en fonctionnalités.]]></description>
            <dc:creator><![CDATA[siham]]></dc:creator>
-           <guid isPermaLink="false">http://www.watson.com/link/14</guid>
+           <guid isPermaLink="false">http://www.watson.com/link/43</guid>
        </item>
        <item>
-           <title>WampServer</title>
-           <link>https://www.wampserver.com/</link>
-           <description><![CDATA[WampServer est une plate-forme de développement Web sous Windows pour des applications Web dynamiques à l’aide du serveur Apache2, du langage de scripts PHP et d’une base de données MySQL.]]></description>
+           <title>Linux</title>
+           <link>https://www.linux.org/</link>
+           <description><![CDATA[Linux ou GNU/Linux — plus rarement GNU+Linux — est une famille de systèmes d'exploitation open source de type Unix fondés sur le noyau Linux créé en 1991 par Linus Torvalds.]]></description>
            <dc:creator><![CDATA[siham]]></dc:creator>
-           <guid isPermaLink="false">http://www.watson.com/link/13</guid>
+           <guid isPermaLink="false">http://www.watson.com/link/42</guid>
        </item>
        <item>
-           <title>MDN Web Docs</title>
-           <link>https://developer.mozilla.org/fr/docs/Learn</link>
-           <description><![CDATA[Un ensemble d’articles pour fournir aux développeurs web débutants tout ce dont ils ont besoin pour commencer à développer des sites web simples.]]></description>
+           <title>Debian</title>
+           <link>https://www.debian.org/index.fr.html</link>
+           <description><![CDATA[Debian est une distribution Linux, composée presqu'exclusivement de logiciels libres.]]></description>
            <dc:creator><![CDATA[siham]]></dc:creator>
-           <guid isPermaLink="false">http://www.watson.com/link/12</guid>
+           <guid isPermaLink="false">http://www.watson.com/link/41</guid>
        </item>
        <item>
-           <title>Framasoft 12</title>
-           <link>https://framasoft.org/</link>
-           <description><![CDATA[Un réseau dédié à la promotion du « libre » en général et du logiciel libre en particulier.]]></description>
-           <dc:creator><![CDATA[admin]]></dc:creator>
-           <guid isPermaLink="false">http://www.watson.com/link/3</guid>
+           <title>Virtualbox</title>
+           <link>https://www.virtualbox.org/</link>
+           <description><![CDATA[Oracle VM VirtualBox est un logiciel libre de virtualisation créé par la société Innotek rachetée par Sun Microsystems et aujourd'hui publié par Oracle.]]></description>
+           <dc:creator><![CDATA[siham]]></dc:creator>
+           <guid isPermaLink="false">http://www.watson.com/link/40</guid>
        </item>
        <item>
-           <title>Duck Duck Go</title>
-           <link>https://duckduckgo.com/</link>
-           <description><![CDATA[Le moteur de recherche qui ne trace pas ses utilisateurs.]]></description>
-           <dc:creator><![CDATA[admin]]></dc:creator>
-           <guid isPermaLink="false">http://www.watson.com/link/2</guid>
+           <title>Checker PHP</title>
+           <link>https://phpcodechecker.com/</link>
+           <description><![CDATA[Un vérificateur de code PHP avancé et personnalisé qui recherche dans votre code les fautes de frappe et les erreurs les plus courantes et les plus difficiles à trouver ; comprend une vérification de la syntaxe.]]></description>
+           <dc:creator><![CDATA[siham]]></dc:creator>
+           <guid isPermaLink="false">http://www.watson.com/link/39</guid>
        </item>
        <item>
-           <title>Campus Virtuel TIC</title>
-           <link>https://cvtic.unilim.fr/</link>
-           <description><![CDATA[Site internet du CvTIC.]]></description>
-           <dc:creator><![CDATA[admin]]></dc:creator>
-           <guid isPermaLink="false">http://www.watson.com/link/1</guid>
+           <title>Postman</title>
+           <link>https://www.postman.com/</link>
+           <description><![CDATA[Postman est une application permettant de tester des API.]]></description>
+           <dc:creator><![CDATA[siham]]></dc:creator>
+           <guid isPermaLink="false">http://www.watson.com/link/38</guid>
+       </item>
+       <item>
+           <title>Validator W3C</title>
+           <link>https://www.https://validator.w3.org/.net/manual/fr/index.php</link>
+           <description><![CDATA[Le Markup Validation Service est un validateur du World Wide Web Consortium qui permet aux utilisateurs Internet de vérifier les documents HTML et XHTML pré-HTML5 pour un balisage bien formé par rapport à une définition de type de document.]]></description>
+           <dc:creator><![CDATA[siham]]></dc:creator>
+           <guid isPermaLink="false">http://www.watson.com/link/37</guid>
+       </item>
+       <item>
+           <title>Support - PHP</title>
+           <link>https://www.php.net/manual/fr/index.php</link>
+           <description><![CDATA[Aide et assistance pour PHP en ligne]]></description>
+           <dc:creator><![CDATA[siham]]></dc:creator>
+           <guid isPermaLink="false">http://www.watson.com/link/36</guid>
+       </item>
+       <item>
+           <title>WordPress</title>
+           <link>https://wordpress.com/fr/</link>
+           <description><![CDATA[Créez et développez un site internet avec WordPress.]]></description>
+           <dc:creator><![CDATA[siham]]></dc:creator>
+           <guid isPermaLink="false">http://www.watson.com/link/35</guid>
+       </item>
+       <item>
+           <title>Rue du Commerce</title>
+           <link>https://www.rueducommerce.fr</link>
+           <description><![CDATA[Une entreprise française de grande distribution, acteur du secteur du commerce en ligne en France.]]></description>
+           <dc:creator><![CDATA[siham]]></dc:creator>
+           <guid isPermaLink="false">http://www.watson.com/link/34</guid>
+       </item>
+       <item>
+           <title>LDLC</title>
+           <link>https://www.ldlc.com</link>
+           <description><![CDATA["N°1 du high-tech et du matériel informatique, Élu Service Client de l'Année."]]></description>
+           <dc:creator><![CDATA[siham]]></dc:creator>
+           <guid isPermaLink="false">http://www.watson.com/link/33</guid>
+       </item>
+       <item>
+           <title>Onisep</title>
+           <link>https://www.onisep.fr</link>
+           <description><![CDATA[Onisep produit et diffuse toute l'information sur les formations et les métiers.]]></description>
+           <dc:creator><![CDATA[siham]]></dc:creator>
+           <guid isPermaLink="false">http://www.watson.com/link/32</guid>
+       </item>
+       <item>
+           <title>Wikipedia</title>
+           <link>https://fr.wikipedia.org</link>
+           <description><![CDATA[Un projet d’encyclopédie collective en ligne, universelle, multilingue et fonctionnant sur le principe du wiki.]]></description>
+           <dc:creator><![CDATA[siham]]></dc:creator>
+           <guid isPermaLink="false">http://www.watson.com/link/31</guid>
        </item>
    </channel>
 </rss>
