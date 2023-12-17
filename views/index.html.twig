@@ -13,16 +13,25 @@
 			</div>
 		{% endfor %}
 	</div>
+
 	<!-- Pagination links -->
 	<br/><br/><br/><br/>
 	<div class="text-center">
-		<span>Pages :</span>
+        {% if currentPageLinks - 1 >= 1 %}
+          <a class="btn btn-primary st-color-yellow" href="{{ path('home', { 'pageLinks': currentPageLinks - 1 }) }}" title="previous">Précédent</a>
+        {% endif %}
+
 		{% for page in 1..totalPagesLinks %}
 			{% if page == currentPageLinks %}
-				<span>{{ page }}</span>
+				<span>&nbsp;{{ page }}&nbsp;</span>
 			{% else %}
-				<a href="{{ path('home', {'pageLinks': page}) }}">{{ page }}</a>
+				<a href="{{ path('home', {'pageLinks': page}) }}">&nbsp;{{ page }}&nbsp;</a>
 			{% endif %}
 		{% endfor %}
+
+        {% if currentPageLinks + 1 <= totalPagesLinks %}
+            <a class="btn btn-primary st-color-yellow" href="{{ path('home', { 'pageLinks': currentPageLinks + 1 }) }}" title="next">Suivant</a>
+        {% endif %}
 	</div>
 {% endblock %}
+
