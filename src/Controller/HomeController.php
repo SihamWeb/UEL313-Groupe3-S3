@@ -71,7 +71,7 @@ class HomeController {
      */
     public function tagAction($id, Request $request, Application $app) {
         $page = $request->query->get('page', 1);
-        $byPage = 2;
+        $byPage = 3;
 
         $totalLinks = $app['dao.link']->countByTag($id);
         $needPage = ceil($totalLinks / $byPage);
