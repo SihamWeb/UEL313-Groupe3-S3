@@ -6,13 +6,14 @@
 <p>
     <h2>{{ link.title }}</h2>
     <p>{{ link.desc }}</p>
-    <a href="{{ link.url }}" title="" target="_blank">Open ></a>
-    <em>(by {{ link.user.username }})</em>
-
+    <br><br>
+    <a class="btn btn-primary" href="{{ link.url }}" title="" target="_blank">Open ></a>
+<br><br>
     {% for tag in link.tags %}
     	<a href="{{ path('tag', { 'id': tag.id }) }}" title="Filtrer">
     		{{ tag.title }}
     	</a>
     {% endfor %}
+    <p><em>(by {{ link.user.username }})</em></p>
 </p>
 {% endblock %}
