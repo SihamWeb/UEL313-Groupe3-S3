@@ -40,12 +40,22 @@ body {
     padding-bottom: 10px;
 }
 
-.zoom {
+
+img {
+    margin: 0 auto;
     padding: 50px;
+}
+
+.card_image {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    padding: 50px;}
+
+.zoom {
     transition: transform .2s;
     width: 200px;
     height: 200px;
-    margin: 0 auto;
 }
 
 .zoom:hover {
