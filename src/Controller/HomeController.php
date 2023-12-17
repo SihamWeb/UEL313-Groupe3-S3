@@ -4,6 +4,7 @@ namespace Watson\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class HomeController {
 
@@ -16,7 +17,7 @@ class HomeController {
     public function indexAction(Request $request, Application $app) {
         // Get the page number from the query
         $currentPageLinks = $request->query->get('pageLinks', 1);
-        $byPageLinks = 3;
+        $byPageLinks = 15;
 
         // Get links paginated
         $links = $app['dao.link']->findByPage($currentPageLinks, $byPageLinks);
@@ -31,6 +32,15 @@ class HomeController {
             'totalPagesLinks' => $totalPagesLinks,
             'currentPageLinks' => $currentPageLinks
         ));
+    }
+
+    /**
+     * @return Response RSS File
+     */
+
+    public function rssAction(){
+        $rssContent = file_get_contents(__DIR__.'/../../web/rss.xml');
+        return new Response($rssContent, 200, array('Content-Type' => 'text/xml'));
     }
 
     /**
@@ -61,7 +71,7 @@ class HomeController {
      */
     public function tagAction($id, Request $request, Application $app) {
         $page = $request->query->get('page', 1);
-        $byPage = 1;
+        $byPage = 2;
 
         $totalLinks = $app['dao.link']->countByTag($id);
         $needPage = ceil($totalLinks / $byPage);
