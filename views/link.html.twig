@@ -10,7 +10,7 @@
     <a class="btn btn-primary" href="{{ link.url }}" title="" target="_blank">Open ></a>
 <br><br>
     {% for tag in link.tags %}
-    	<a href="{{ path('tag', { 'id': tag.id }) }}" title="Filtrer">
+    	<a href="{{ path('tag', { 'id': tag.id }) }}" class="btn btn-outline-primary" title="Filtrer">
     		{{ tag.title }}
     	</a>
     {% endfor %}
