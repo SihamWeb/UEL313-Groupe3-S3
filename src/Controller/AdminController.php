@@ -92,52 +92,19 @@ class AdminController {
                     $app['dao.tag']->saveConnection($idLink, $tag);
                 }
             }
-
-            // Update RSS file
-            $linksRss = $app['dao.link']->findLastLinks();
-            date_default_timezone_set('Europe/Paris');
-            $date = new DateTime("");
-            $repertoire = dirname(__DIR__, 2) . '/web/rss.xml';
-            $fichier = fopen($repertoire, "w");
-            $xml = '<?xml version="1.0" encoding="UTF-8" ?>' . PHP_EOL;
-            $xml .= '<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"
-                        xmlns:wfw="http://wellformedweb.org/CommentAPI/"
-                        xmlns:dc="http://purl.org/dc/elements/1.1/"
-                        xmlns:atom="http://www.w3.org/2005/Atom"
-                        xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
-                        xmlns:slash="http://purl.org/rss/1.0/modules/slash/">' . PHP_EOL;
-            $xml .= '   <channel>' . PHP_EOL;
-            $xml .= '       <title>Watson - Liens</title>' . PHP_EOL;
-            $xml .= '       <atom:link href="' . __DIR__ . '/rss.xml" rel="self" type="application/rss+xml" />' . PHP_EOL;
-            $xml .= '       <link>https://www.watson.com</link>' . PHP_EOL;
-            $xml .= '       <language>fr-FR</language>' . PHP_EOL;
-            $xml .= '       <description>Ce flux répertorie les 15 derniers liens de Watson</description>' . PHP_EOL;
-            $xml .= '       <lastBuildDate>' . $date->format('D, d M Y H:i:s O') . '</lastBuildDate>' . PHP_EOL;
-    
-            foreach ($linksRss as $linkRss) {
-                $user = $app['dao.user']->find($linkRss['user_id']);
-                $xml .= '       <item>' . PHP_EOL;
-                $xml .= '           <title>' . $linkRss["lien_titre"] . '</title>' . PHP_EOL;
-                $xml .= '           <link>' . $linkRss["lien_url"] . '</link>' . PHP_EOL;
-                $xml .= '           <description><![CDATA[' . $linkRss["lien_desc"] . ']]></description>' . PHP_EOL;
-                $xml .= '           <dc:creator><![CDATA[' . $user->getUsername() . ']]></dc:creator>' . PHP_EOL;
-                $xml .= '           <guid isPermaLink="false">http://www.watson.com/link/' . $linkRss["lien_id"] . '</guid>' . PHP_EOL;
-    
-                $xml .= '       </item>' . PHP_EOL;
-            }
-    
-            $xml .= '   </channel>' . PHP_EOL;
-            $xml .= '</rss>';
-            fwrite($fichier, $xml);
-            fclose($fichier);
-
-            
+   
             $app['session']->getFlashBag()->add('success', 'The link was successfully created.');
         }
 
+
+        // RSS
+        $links = $app['dao.link']->getLinksForRSS();
+        $this->linksToRSS($app, $links);
+
+        
         return $app['twig']->render('link_form.html.twig', array(
             'title' => 'New link',
-            'linkForm' => $linkForm->createView()));
+            'linkForm' => $linkForm->createView()));    
     }
 
     /**
@@ -195,9 +162,16 @@ class AdminController {
             $app['dao.link']->save($link);
             $app['session']->getFlashBag()->add('success', 'The link was succesfully updated.');
         }
+
+        
+        // RSS
+        $links = $app['dao.link']->getLinksForRSS();
+        $this->linksToRSS($app, $links);
+
+        
         return $app['twig']->render('link_form.html.twig', array(
             'title' => 'Edit link',
-            'linkForm' => $linkForm->createView()));
+            'linkForm' => $linkForm->createView()));        
     }
 
     /**
@@ -210,6 +184,10 @@ class AdminController {
         // Delete the link
         $app['dao.link']->delete($id);
         $app['session']->getFlashBag()->add('success', 'The link was succesfully removed.');
+
+        // RSS
+        $links = $app['dao.link']->getLinksForRSS();
+        $this->linksToRSS($app, $links);
         
         // Redirect to admin home page
         return $app->redirect($app['url_generator']->generate('admin'));
@@ -289,5 +267,49 @@ class AdminController {
 
         // Redirect to admin home page
         return $app->redirect($app['url_generator']->generate('admin'));
+    }
+
+    
+    /* add links to RSS  */
+    public function linksToRSS(Application $app, array $links)
+    {
+
+        date_default_timezone_set('Europe/Paris');
+        
+        $date = new DateTime("");
+        $repertoire = dirname(__DIR__, 2) . '/web/rss.xml';
+        $fichier = fopen($repertoire, "w");
+        $xml = '<?xml version="1.0" encoding="UTF-8" ?>' . PHP_EOL;
+        $xml .= '<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"
+                    xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+                    xmlns:dc="http://purl.org/dc/elements/1.1/"
+                    xmlns:atom="http://www.w3.org/2005/Atom"
+                    xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+                    xmlns:slash="http://purl.org/rss/1.0/modules/slash/">' . PHP_EOL;
+        $xml .= '   <channel>' . PHP_EOL;
+        $xml .= '       <title>Watson - Liens</title>' . PHP_EOL;
+        $xml .= '       <atom:link href="' . __DIR__ . '/rss.xml" rel="self" type="application/rss+xml" />' . PHP_EOL;
+        $xml .= '       <link>https://www.watson.com</link>' . PHP_EOL;
+        $xml .= '       <language>fr-FR</language>' . PHP_EOL;
+        $xml .= '       <description>Ce flux répertorie les 15 derniers liens de Watson</description>' . PHP_EOL;
+        $xml .= '       <lastBuildDate>' . $date->format('D, d M Y H:i:s O') . '</lastBuildDate>' . PHP_EOL;
+
+        foreach ($links as $result) {
+            $user = $app['dao.user']->find($result['user_id']);
+            $xml .= '       <item>' . PHP_EOL;
+            $xml .= '           <title>' . $result["lien_titre"] . '</title>' . PHP_EOL;
+            $xml .= '           <link>' . $result["lien_url"] . '</link>' . PHP_EOL;
+            $xml .= '           <description><![CDATA[' . $result["lien_desc"] . ']]></description>' . PHP_EOL;
+            $xml .= '           <dc:creator><![CDATA[' . $user->getUsername() . ']]></dc:creator>' . PHP_EOL;
+            $xml .= '           <guid isPermaLink="false">http://www.watson.com/link/' . $result["lien_id"] . '</guid>' . PHP_EOL;
+
+            $xml .= '       </item>' . PHP_EOL;
+        }
+
+        $xml .= '   </channel>' . PHP_EOL;
+        $xml .= '</rss>';
+        fwrite($fichier, $xml);
+        fclose($fichier);
+
     }
 }

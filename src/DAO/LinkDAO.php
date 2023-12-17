@@ -222,11 +222,12 @@ class LinkDAO extends DAO
     }
 
     /* Get 15 last links  */
-    public function findLastLinks()
+    public function getLinksForRSS()
     {
         $sql = 'SELECT * FROM tl_liens ORDER BY lien_id DESC LIMIT 15';
         $result = $this->getDb()->fetchAll($sql);
 
         return $result;
     }
+
 }
