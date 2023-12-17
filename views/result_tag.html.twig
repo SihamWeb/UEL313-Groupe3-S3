@@ -5,22 +5,25 @@
 {% block content %}
     <div class="row">
         <h1>Résultat(s) associé(s) au tag "{{ tag.title }}"</h1>
+    <br><br>
         {% if links|length <= 0 %}
             <p>
                 Aucun résultat ne correspond au tag "{{ tag.title }}".
             </p>
         {% else %}
             {% for link in links %}
-                <div class="col-md-4">
-                    <h2><a class="linkTitle" href="{{ path('link', { 'id': link.id }) }}">{{ link.title }}</a></h2>
+                <div class="card" >
+                    <h2>{{ link.title }}</h2>
                     <p>{{ link.desc }}</p>
-                    <a href="{{ link.url }}" title="" target="_blank">Open ></a>
-                    <em>(by {{ link.user.username }})</em>
-                    {% for tag in link.tags %}
-                        <a href="{{ path('tag', { 'id': tag.id }) }}" title="Filtrer">
-                            {{ tag.title }}
-                        </a>
-                    {% endfor %}
+                <br><br>
+                <a class="btn btn-primary" href="{{ link.url }}" title="" target="_blank">Open ></a>
+                <br><br>
+                {% for tag in link.tags %}
+                    <a href="{{ path('tag', { 'id': tag.id }) }}" class="btn btn-outline-primary" title="Filtrer">
+                        {{ tag.title }}
+                    </a>
+                {% endfor %}
+                <p><em>(by {{ link.user.username }})</em></p>
                 </div>
             {% endfor %}
             </div>
