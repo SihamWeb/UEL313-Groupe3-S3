@@ -23,7 +23,7 @@ class AdminController {
         // Get the page number from the query
         $currentPageLinks = $request->query->get('pageLinks', 1);
         $currentPageUsers = $request->query->get('pageUsers', 1);
-        $byPageLinks = 3;
+        $byPageLinks = 15;
         $byPageUsers = 2;
 
         // Get links paginated

@@ -16,7 +16,7 @@ class HomeController {
     public function indexAction(Request $request, Application $app) {
         // Get the page number from the query
         $currentPageLinks = $request->query->get('pageLinks', 1);
-        $byPageLinks = 3;
+        $byPageLinks = 15;
 
         // Get links paginated
         $links = $app['dao.link']->findByPage($currentPageLinks, $byPageLinks);
